@@ -33,9 +33,9 @@ Route::get('admin', function () {
 
     return view('admin', ['ASkills' => $ASkills], ['AUser' => $AUser]);
 })->name('admin');
-Route::post('add', 'AdminController@add');
-Route::post('update', 'AdminController@update');
-Route::post('delete', 'AdminController@delete');
+Route::post('admin/add', 'AdminController@add');
+Route::post('admin/update', 'AdminController@update');
+Route::post('admin/delete', 'AdminController@delete');
 });
 
 Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function()
@@ -48,9 +48,9 @@ Route::get('user', function () {
 
     return view('user', ['ASkills' => $ASkills], ['AUser' => $AUser]);
 })->name('user');
-Route::post('add', 'UserController@add');
-Route::post('update', 'UserController@update');
-Route::post('delete', 'UserController@delete');
+Route::post('user/add', 'UserController@add');
+Route::post('user/update', 'UserController@update');
+Route::post('user/delete', 'UserController@delete');
 });
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

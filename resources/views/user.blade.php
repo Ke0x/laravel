@@ -47,7 +47,7 @@
             </tr>
                @endforeach
             </table>
-        <form action="add" method="POST">
+        <form action="user/add" method="POST">
         @csrf
         <select name='id'>
           @foreach ($ASkills as $skills)
@@ -58,7 +58,7 @@
         <button type="submit"> Ajouter </button>
         </form>
 
-        <form action="update" method="POST">
+        <form action="user/update" method="POST">
         @csrf
         <select name='id'>
           @foreach ($AUser->skills as $skills)
@@ -69,7 +69,7 @@
         <button type="submit"> Modifier </button>
         </form>
 
-        <form action="delete" method="POST">
+        <form action="user/delete" method="POST">
         @csrf
         <select name='id'>
           @foreach ($AUser->skills as $skills)
