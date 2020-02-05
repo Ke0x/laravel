@@ -31,8 +31,7 @@ class HomeController extends Controller
 
     public function admin(Request $req)
     {
-        $AUser = auth()->user();
-        $ASkills = Skill::get();
+        $AUser = Skill::get();
         $ALlusers = User::get();
         /*$ALlusers = DB::table('users')
         ->join('skill_user', 'users.id', '=', 'skill_user.user_id')

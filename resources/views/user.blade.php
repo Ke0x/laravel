@@ -11,7 +11,6 @@
 
     </head>
     <body>     
-    <a>{{ $AUser->skills }}</a>
         <table>
             <tr>
               <th> ID </th>

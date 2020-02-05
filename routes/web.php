@@ -28,7 +28,7 @@ Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
 Route::match(['get', 'post'], '/admin/', 'HomeController@admin');
 Route::get('admin', function () {
 
-    $AUser = auth()->user();
+    $AUser = App\Skill::get();
     $ALlusers = App\User::get();
 
     return view('admin', ['ALlusers' => $ALlusers], ['AUser' => $AUser]);
@@ -46,6 +46,7 @@ Route::get('admin/{id}', function($id) {
 Route::post('add', 'AdminController@add')->name('add');
 Route::post('update', 'AdminController@update')->name('update');
 Route::post('delete', 'AdminController@delete')->name('delete');
+Route::post('image', 'AdminController@image')->name('image');
 });
 
 Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function()

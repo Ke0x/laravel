@@ -10,7 +10,20 @@
         <title>Laravel</title>
 
     </head>
-    <body>     
+    <body>
+    
+    <form action="{{ route('image') }}" method="POST" enctype="multipart/form-data">
+@csrf
+
+        <input type="file" name="image" class="form-control">
+        <select name='id'>
+          @foreach ($AUser as $skills)
+            <option value='{{ $skills -> id }}'> {{ $skills -> name }} </option>
+          @endforeach
+        </select>
+        <button type="submit" class="btn btn-success">Upload</button>
+        
+</form> 
         <table>
             <tr>
               <th> ID </th>
