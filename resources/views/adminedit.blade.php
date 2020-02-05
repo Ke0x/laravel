@@ -11,7 +11,6 @@
 
     </head>
     <body>     
-    <a>{{ $AUser->skills }}</a>
         <table>
             <tr>
               <th> ID </th>
@@ -48,35 +47,38 @@
             </tr>
                @endforeach
             </table>
-        <form action="user/add" method="POST">
+        <form action="{{ route('add') }}" method="POST">
         @csrf
         <select name='id'>
           @foreach ($ASkills as $skills)
             <option value='{{ $skills -> id }}'> {{ $skills -> name }} </option>
           @endforeach
         </select>
+        <input name="uid" type="hidden" value='{{ $AUser -> id }}'>
         <input type="text" placeholder="level" name="level"><br>
         <button type="submit"> Ajouter </button>
         </form>
 
-        <form action="user/update" method="POST">
+        <form action="{{ route('update') }}" method="POST">
         @csrf
         <select name='id'>
           @foreach ($AUser->skills as $skills)
             <option value='{{ $skills -> id }}'> {{ $skills -> name }} </option>
           @endforeach
         </select>
-        <input type="text" placeholder="level" name="level"><br>
+        <input name="uid" type="hidden" value='{{ $AUser -> id }}'>
+        <input type="edit" placeholder="level" name="level"><br>
         <button type="submit"> Modifier </button>
         </form>
 
-        <form action="user/delete" method="POST">
+        <form action="{{ route('delete') }}" method="POST">
         @csrf
         <select name='id'>
           @foreach ($AUser->skills as $skills)
             <option value='{{ $skills -> id }}'> {{ $skills -> name }} </option>
           @endforeach
         </select>
+        <input name="uid" type="hidden" value='{{ $AUser -> id }}'>
         <button type="submit"> Supprimer </button>
         </form>
 </body>

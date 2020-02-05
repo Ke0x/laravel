@@ -29,18 +29,29 @@ Route::match(['get', 'post'], '/admin/', 'HomeController@admin');
 Route::get('admin', function () {
 
     $AUser = auth()->user();
+    $ALlusers = App\User::get();
+
+    return view('admin', ['ALlusers' => $ALlusers], ['AUser' => $AUser]);
+})->name('admin');
+
+
+Route::get('admin/{id}', function($id) {
+
+    $AUser = App\User::find($id);
     $ASkills = App\Skill::get();
 
-    return view('admin', ['ASkills' => $ASkills], ['AUser' => $AUser]);
-})->name('admin');
-Route::post('admin/add', 'AdminController@add');
-Route::post('admin/update', 'AdminController@update');
-Route::post('admin/delete', 'AdminController@delete');
+    return view('adminedit', ['ASkills' => $ASkills], ['AUser' => $AUser]); 
+});
+
+Route::post('add', 'AdminController@add')->name('add');
+Route::post('update', 'AdminController@update')->name('update');
+Route::post('delete', 'AdminController@delete')->name('delete');
 });
 
 Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function()
 {
 Route::match(['get', 'post'], '/user/', 'HomeController@member');
+/*
 Route::get('user', function () {
 
     $AUser = auth()->user();
@@ -48,6 +59,7 @@ Route::get('user', function () {
 
     return view('user', ['ASkills' => $ASkills], ['AUser' => $AUser]);
 })->name('user');
+*/
 Route::post('user/add', 'UserController@add');
 Route::post('user/update', 'UserController@update');
 Route::post('user/delete', 'UserController@delete');
