@@ -46,7 +46,7 @@ Route::get('admin/{id}', function($id) {
 Route::post('add', 'AdminController@add')->name('add');
 Route::post('update', 'AdminController@update')->name('update');
 Route::post('delete', 'AdminController@delete')->name('delete');
-Route::post('image', 'AdminController@image')->name('image');
+Route::post('newskill', 'AdminController@newskill')->name('newskill');
 });
 
 Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function()

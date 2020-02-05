@@ -27,16 +27,15 @@ class AdminController extends Controller
         return redirect()->to('admin/'. $req->uid);
     }
 
-    function image(Request $req)
+    function newskill(Request $req)
     {
         $image = $req->file('image');
         $name = time() . '.' . $image->getClientOriginalExtension();
         $destinationPath = public_path('/assets/');
         $image->move($destinationPath, $name);
+        $path = './assets/' . $name;
 
-        $path = '' . $destinationPath . $name;
-
-        DB::table('skills')->where('id', $req->id)->update(['logo' => $path]);
+        DB::table('skills')->insert(['name' => $req->name, 'description' => $req->description, 'logo' => $path]);
         return redirect()->to('admin/'. $req->uid);
     }
 

@@ -11,19 +11,31 @@
 
     </head>
     <body>
-    
-    <form action="{{ route('image') }}" method="POST" enctype="multipart/form-data">
-@csrf
-
+    <table>
+            <tr>
+              <th> ID </th>
+              <th> Name </th>
+              <th> Description </th>
+              <th> Image </th>
+              <th> Action </th>
+            </tr>
+            @foreach ($AUser as $skills)
+            <tr>
+              <td> {{ $skills -> id }} </td>
+              <td> {{ $skills -> name }} </td>
+              <td> {{ $skills -> description }} </td>
+              <td> <img src="{{ $skills -> logo }}" width="50px"> </td>
+              <td width="50%"><a href="{{ url('admin/' . $skills -> id ) }}" >Modifier</a></td>
+            </tr>
+            @endforeach
+        </table>
+    <form action="{{ route('newskill') }}" method="POST" enctype="multipart/form-data">
+    @csrf
         <input type="file" name="image" class="form-control">
-        <select name='id'>
-          @foreach ($AUser as $skills)
-            <option value='{{ $skills -> id }}'> {{ $skills -> name }} </option>
-          @endforeach
-        </select>
+        <input type="text" placeholder="name" name="name"><br>
+        <input type="text" placeholder="description" name="description"><br>
         <button type="submit" class="btn btn-success">Upload</button>
-        
-</form> 
+    </form> 
         <table>
             <tr>
               <th> ID </th>
