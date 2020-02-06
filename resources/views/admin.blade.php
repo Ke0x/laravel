@@ -25,7 +25,7 @@
               <td> {{ $skills -> name }} </td>
               <td> {{ $skills -> description }} </td>
               <td> <img src="{{ $skills -> logo }}" width="50px"> </td>
-              <td width="50%"><a href="{{ url('admin/' . $skills -> id ) }}" >Modifier</a></td>
+              <td width="50%"><a href="{{ url('admin/skill/' . $skills -> id ) }}" >Modifier</a></td>
             </tr>
             @endforeach
         </table>

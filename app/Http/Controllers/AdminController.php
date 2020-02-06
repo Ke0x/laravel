@@ -33,10 +33,22 @@ class AdminController extends Controller
         $name = time() . '.' . $image->getClientOriginalExtension();
         $destinationPath = public_path('/assets/');
         $image->move($destinationPath, $name);
-        $path = './assets/' . $name;
+        $path = 'assets/' . $req->name;
 
         DB::table('skills')->insert(['name' => $req->name, 'description' => $req->description, 'logo' => $path]);
         return redirect()->to('admin/'. $req->uid);
+    }
+
+    function editskill(Request $req)
+    {
+        $image = $req->file('image');
+        $name = $req->name . '.' . $image->getClientOriginalExtension();
+        $destinationPath = public_path('/assets/');
+        $image->move($destinationPath, $name);
+        $path = 'assets/' . $name;
+
+        DB::table('skills')->where('id', $req->id)->update(['name' => $req->name, 'description' => $req->description, 'logo' => $path ]);
+        return redirect()->to('admin/skill/'. $req->id);
     }
 
 

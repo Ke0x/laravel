@@ -43,6 +43,15 @@ Route::get('admin/{id}', function($id) {
     return view('adminedit', ['ASkills' => $ASkills], ['AUser' => $AUser]); 
 });
 
+Route::get('admin/skill/{id}', function($id) {
+
+    $ASkills = App\Skill::find($id);
+
+    return view('skilledit', ['ASkills' => $ASkills],); 
+});
+
+Route::post('editskill', 'AdminController@editskill')->name('editskill');
+
 Route::post('add', 'AdminController@add')->name('add');
 Route::post('update', 'AdminController@update')->name('update');
 Route::post('delete', 'AdminController@delete')->name('delete');
